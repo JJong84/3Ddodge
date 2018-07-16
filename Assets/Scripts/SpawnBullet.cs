@@ -19,7 +19,8 @@ public class SpawnBullet : MonoBehaviour {
         float sinPi = Mathf.Sin(randomPi * 3.14f);
 
         Debug.Log("spawn");
-        GameObject enemy = (GameObject)Instantiate(Enemy, new Vector3(sinTheta*cosPi, cosTheta, sinTheta *sinPi)*r, Quaternion.identity); //랜덤한 위치와, 화면 제일 위에서 Enemy를 하나 생성해줍니다.
+        //랜덤한 위치와, 화면 제일 위에서 Enemy를 하나 생성해줍니다.  
+        GameObject enemy = (GameObject)Instantiate(Resources.Load("Prefab/Enemy"), new Vector3(sinTheta * cosPi, cosTheta, sinTheta * sinPi) * r, Quaternion.identity);
         Debug.Log("axis");
         Debug.Log(sinTheta * cosPi * r);
         Debug.Log(sinTheta * sinPi*r);
