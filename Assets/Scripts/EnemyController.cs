@@ -135,11 +135,11 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Enemy, onTriggerEnter : "+ other.gameObject.name);
+        //Debug.Log("Enemy, onTriggerEnter : "+ other.gameObject.name);
         // if other.gameObject.name = Game Over
         if(other.gameObject.name.Equals("Player"))
         {
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
         }
         
     }
