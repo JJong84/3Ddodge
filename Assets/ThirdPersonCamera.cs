@@ -35,9 +35,9 @@ public class ThirdPersonCamera : MonoBehaviour {
 
         float desiredYAngle = target.eulerAngles.y;
         float desiredXAngle = pivot.eulerAngles.x;
+        transform.Rotate(-vertcal, horizontal, 0);
         Quaternion rotation = Quaternion.Euler(desiredXAngle, desiredYAngle, 0);
         transform.position = target.position - (rotation * offset);
-
         transform.LookAt(target);
     }
     /*
