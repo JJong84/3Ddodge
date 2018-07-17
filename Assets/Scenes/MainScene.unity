@@ -322,7 +322,8 @@ MonoBehaviour:
   offset: {x: 0, y: -5, z: 10}
   useOffsetValues: 0
   rotateSpeed: 1
-  pivot: {fileID: 807307796}
+  horizontal: 0
+  vertical: 0
 --- !u!1001 &659993682
 Prefab:
   m_ObjectHideFlags: 0
