@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControll : MonoBehaviour
-{
+public class PlayerMovement : MonoBehaviour {
+
     [SerializeField] float movementSpeed = 50f;
     [SerializeField] float turnSpeed = 60f;
 
@@ -15,16 +15,15 @@ public class PlayerControll : MonoBehaviour
     }
 
     // Use this for initialization
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+    void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
         Turn();
         Thrust();
-    }
+	}
 
     void Turn()
     {
@@ -33,6 +32,6 @@ public class PlayerControll : MonoBehaviour
 
     void Thrust()
     {
-        myT.position += myT.forward * movementSpeed * Time.deltaTime * Input.GetAxis("Vertical");
+            myT.position += myT.forward * movementSpeed * Time.deltaTime * Input.GetAxis("Vertical");
     }
 }
