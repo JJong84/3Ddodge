@@ -6,6 +6,7 @@ public class PlayerControll : MonoBehaviour
 {
     [SerializeField] float movementSpeed = 50f;
     [SerializeField] float turnSpeed = 60f;
+    Collider[] colls;
 
     Transform myT;
 
@@ -24,6 +25,19 @@ public class PlayerControll : MonoBehaviour
     {
         Turn();
         Thrust();
+
+        if (Input.GetKey(KeyCode.Q))
+        {          
+            Debug.Log("PlayerController Skill!!!");            
+
+            colls = Physics.OverlapSphere(transform.position, 20.0f);
+            foreach (Collider coll in colls)
+            {
+                coll.isTrigger = false;
+            }
+
+        }
+
     }
 
     void Turn()

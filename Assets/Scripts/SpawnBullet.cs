@@ -20,18 +20,18 @@ public class SpawnBullet : MonoBehaviour {
 
         Debug.Log("spawn");
         //랜덤한 위치와, 화면 제일 위에서 Enemy를 하나 생성해줍니다.  
-        GameObject enemy = (GameObject)Instantiate(Resources.Load("Prefab/Enemy"), new Vector3(sinTheta * cosPi, cosTheta, sinTheta * sinPi) * r, Quaternion.identity);
-        Debug.Log("axis");
-        Debug.Log(sinTheta * cosPi * r);
-        Debug.Log(sinTheta * sinPi*r);
-        rb = enemy.GetComponent<Rigidbody>();
+        Enemy = (GameObject)Instantiate(Resources.Load("Prefab/Enemy"), new Vector3(sinTheta * cosPi, cosTheta, sinTheta * sinPi) * r, Quaternion.identity);
+        //Debug.Log("axis");
+        //Debug.Log(sinTheta * cosPi * r);
+        //Debug.Log(sinTheta * sinPi*r);
+        rb = Enemy.GetComponent<Rigidbody>();
         rb.velocity = new Vector3(sinTheta * cosPi, cosTheta, sinTheta * sinPi)*(-3);
     }
 
     // Use this for initialization
     void Start () {
         Enemy = GameObject.FindGameObjectWithTag("Enemy"); //Prefab을 받을 public 변수 입니다.
-    InvokeRepeating("SpawnEnemy", 3, 0.1f);
+        InvokeRepeating("SpawnEnemy", 3, 0.1f);
     }
 	
 	// Update is called once per frame
