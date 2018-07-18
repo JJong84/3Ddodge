@@ -12,6 +12,8 @@ public class ThirdPersonCamera : MonoBehaviour {
     private const float Y_ANGLE_MAX = 50.0f;    
     public float horizontal;
     public float vertical;
+    public AudioClip audioClip;
+    public AudioSource audioSource;
 
 
 
@@ -21,6 +23,8 @@ public class ThirdPersonCamera : MonoBehaviour {
         {
             offset = target.position - transform.position;
         }
+        audioSource.clip = audioClip;
+        audioSource.Play();
 
     }
 
@@ -37,7 +41,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 
     private void LateUpdate()
     {
-        Vector3 _wantedPosition = target.TransformPoint(0, 4.0f, -15.0f);
+        Vector3 _wantedPosition = target.TransformPoint(0, 5.0f, -20.0f);
         transform.position = Vector3.Lerp(transform.position, _wantedPosition, Time.deltaTime * 15.0f);
 
         Quaternion _wantedRotation = Quaternion.LookRotation(target.position - transform.position, target.up);

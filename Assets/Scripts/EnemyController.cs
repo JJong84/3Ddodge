@@ -139,7 +139,7 @@ public class EnemyController : MonoBehaviour
         // if other.gameObject.name = Game Over
         if(other.gameObject.name.Equals("Player"))
         {
-            //Time.timeScale = 0;
+            Time.timeScale = 0;
         }
         
     }

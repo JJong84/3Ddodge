@@ -11,6 +11,11 @@ public class PlayerControll : MonoBehaviour
 
     Transform myT;
     private float skillArea = 30.0f;
+    private int flag = 0;
+    public AudioClip audioClip;
+    public AudioSource audioSource;
+    private int soundcount;
+
 
     private void Awake()
     {
@@ -24,6 +29,8 @@ public class PlayerControll : MonoBehaviour
         Debug.Log("GetSiblingIndex1 : " + transform.Find("PS_OrbElectric").GetSiblingIndex().ToString());
         Debug.Log("GetSiblingIndex2 : " + transform.GetChild(1).name);
         skillEffect = transform.GetChild(1);
+    //    audioSource.clip = audioClip;
+        soundcount = 0;
 
     }
 
@@ -32,6 +39,14 @@ public class PlayerControll : MonoBehaviour
     {
         Turn();
         Thrust();
+
+        if(flag == 1)
+        {
+            flag = 0;
+            Time.timeScale = 1.0f;
+            soundcount = 0;
+            //audioSource.Stop();
+        }
 
         
 
@@ -48,6 +63,18 @@ public class PlayerControll : MonoBehaviour
             }
             Invoke("SkillEffectOff", 2.0f);
         }
+
+        if(Input.GetKey(KeyCode.Tab))
+        {
+            flag = 1;
+            //Debug.Log("Tab here?");
+            Time.timeScale = 0.3f;
+            if(soundcount == 0)
+            {
+             //   audioSource.Play();
+            }
+        }
+
 
     }
 
