@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -12,10 +13,11 @@ public class EnemyController : MonoBehaviour
     float TimeFloat;
     int TimeInt;
     float DelayTime;
+    public int r;
     float RepeatingTime = 2.0f;
+    
 
     PlayerControll playerControll;
-
 
 
 
@@ -117,7 +119,7 @@ public class EnemyController : MonoBehaviour
         //Debug.Log("enemey position : "+transform.position.x +" / "+transform.position.y+" / "+transform.position.z);
 
         distance = Mathf.Sqrt(transform.position.x * transform.position.x + transform.position.y * transform.position.y + transform.position.z * transform.position.z);
-        if (distance > 50)
+        if (distance > r)
         {
             //Debug.Log("enemy destroyed");
             Destroy(gameObject);
@@ -132,18 +134,4 @@ public class EnemyController : MonoBehaviour
         //Debug.Log("Enemy, on Collision Enter");
         // Debug.Log("Collision with "+collision.gameObject.name);
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        //Debug.Log("Enemy, onTriggerEnter : "+ other.gameObject.name);
-        // if other.gameObject.name = Game Over
-        if(other.gameObject.name.Equals("Player"))
-        {
-            Time.timeScale = 0;
-        }
-        
-    }
-
-
-
 }
