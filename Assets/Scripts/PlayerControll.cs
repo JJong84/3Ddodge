@@ -23,7 +23,7 @@ public class PlayerControll : MonoBehaviour
 
     private float currentCoolTime; //남은 쿨타임을 추적 할 변수
 
-    private bool canUseSkill = true; //스킬을 사용할 수 있는지 확인하는 변수
+    private bool canUseSkill; //스킬을 사용할 수 있는지 확인하는 변수
 
     private float SkillContinueTime = 2f;
 
@@ -57,6 +57,7 @@ public class PlayerControll : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        canUseSkill = true;
         exFlag = false;
         scoreFlag = false;
         canvas = GameObject.Find("Canvas");
@@ -75,7 +76,6 @@ public class PlayerControll : MonoBehaviour
         explosionSource.clip = explosionClip;
         soundcount = 0;
         boostEffect.gameObject.SetActive(false);
-
     }
 
     // Update is called once per frame
@@ -122,17 +122,18 @@ public class PlayerControll : MonoBehaviour
                 pschild.loop = false;
                 ps2child.loop = false;
             }
+            /*
             if (!Input.GetKey(KeyCode.Q))
             {
-                //skillEffect.gameObject.SetActive(false);
+                skillEffect.gameObject.SetActive(false);
             }
+            */
             if (Input.GetKeyDown(KeyCode.Q) && canUseSkill)
             {
+                Debug.Log("effect on");
                 audioSource1.Play();
                 skillEffect.gameObject.SetActive(true);
-            }
-            if (Input.GetKey(KeyCode.Q))
-            {
+                Invoke("SkillEffectOff", 2f);
                 UseSkill();
             }
 
@@ -170,6 +171,7 @@ public class PlayerControll : MonoBehaviour
 
     void SkillEffectOff()
     {
+        Debug.Log("Skill Effect Off");
         if (skillEffect.gameObject.activeSelf == true)
         {
             skillEffect.gameObject.SetActive(false);
@@ -182,16 +184,15 @@ public class PlayerControll : MonoBehaviour
         {
             Debug.Log("Use Skill");
             Debug.Log("PlayerController Skill!!!");
-
-            StartCoroutine("SkillContinue");
-            /*
+            
             colls = Physics.OverlapSphere(transform.position, skillArea);
             foreach (Collider coll in colls)
             {
                 coll.isTrigger = false;
             }
-            */
-            Invoke("SkillEffectOff", SkillContinueTime);
+            
+            
+            //Invoke("SkillEffectOff", SkillContinueTime);
 
             skillFilter.fillAmount = 1; //스킬 버튼을 가림
             StartCoroutine("Cooltime");
@@ -222,7 +223,7 @@ public class PlayerControll : MonoBehaviour
         {
             //Debug.Log("##################################");
             skillFilter.fillAmount -= 1 * Time.smoothDeltaTime / coolTime;
-            Debug.Log(skillFilter.fillAmount);
+            //Debug.Log(skillFilter.fillAmount);
             yield return null;
         }
 
@@ -260,11 +261,9 @@ public class PlayerControll : MonoBehaviour
             SkillContinueTime -= 1.0f;
 
         }
-
         yield break;
     }
-    
-
+   
 
     private void OnTriggerEnter(Collider other)
     {
