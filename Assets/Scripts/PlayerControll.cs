@@ -14,6 +14,8 @@ public class PlayerControll : MonoBehaviour
     private int flag = 0;
     public AudioClip audioClip;
     public AudioSource audioSource;
+    public AudioClip audioClip1;
+    public AudioSource audioSource1;
     private int soundcount;
 
 
@@ -29,8 +31,11 @@ public class PlayerControll : MonoBehaviour
         Debug.Log("GetSiblingIndex1 : " + transform.Find("PS_OrbElectric").GetSiblingIndex().ToString());
         Debug.Log("GetSiblingIndex2 : " + transform.GetChild(1).name);
         skillEffect = transform.GetChild(1);
-    //    audioSource.clip = audioClip;
+        audioSource.clip = audioClip;
+        audioSource1.clip = audioClip1;
         soundcount = 0;
+
+        
 
     }
 
@@ -40,39 +45,45 @@ public class PlayerControll : MonoBehaviour
         Turn();
         Thrust();
 
-        if(flag == 1)
+
+        if (!Input.GetKey(KeyCode.Q))
         {
-            flag = 0;
-            Time.timeScale = 1.0f;
-            soundcount = 0;
-            //audioSource.Stop();
+            skillEffect.gameObject.SetActive(false);
         }
 
-        
-
-
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
+            Debug.Log("QQQ");
+            audioSource1.Play();
             skillEffect.gameObject.SetActive(true);
-            Debug.Log("PlayerController Skill!!!");            
-
+        }
+       
+        if (Input.GetKey(KeyCode.Q))
+        {           
             colls = Physics.OverlapSphere(transform.position, skillArea);
             foreach (Collider coll in colls)
             {
                 coll.isTrigger = false;
             }
-            Invoke("SkillEffectOff", 2.0f);
+        }
+
+        if (flag == 1)
+        {
+            flag = 0;
+            Time.timeScale = 1.0f;
+        }
+        if (Input.GetKeyDown(KeyCode.Tab)){
+            audioSource.Play();
         }
 
         if(Input.GetKey(KeyCode.Tab))
         {
             flag = 1;
-            //Debug.Log("Tab here?");
             Time.timeScale = 0.3f;
-            if(soundcount == 0)
-            {
-             //   audioSource.Play();
-            }
+        }
+        if (!Input.GetKey(KeyCode.Tab))
+        {
+            audioSource.Stop();
         }
 
 
@@ -86,13 +97,5 @@ public class PlayerControll : MonoBehaviour
     void Thrust()
     {
         myT.position += myT.forward * movementSpeed * Time.deltaTime * Input.GetAxis("Vertical");
-    }
-
-    void SkillEffectOff()
-    {
-        if (skillEffect.gameObject.activeSelf == true)
-        {
-            skillEffect.gameObject.SetActive(false);
-        }
     }
 }
