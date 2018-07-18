@@ -8,6 +8,11 @@ public class PlayerControll : MonoBehaviour
     [SerializeField] float turnSpeed = 60f;
     Collider[] colls;
     Transform skillEffect;
+    Transform boostEffect;
+    public ParticleSystem ps;
+    public ParticleSystem ps2;
+    public ParticleSystem pschild;
+    public ParticleSystem ps2child;
 
     Transform myT;
     private float skillArea = 30.0f;
@@ -31,17 +36,38 @@ public class PlayerControll : MonoBehaviour
         Debug.Log("GetSiblingIndex1 : " + transform.Find("PS_OrbElectric").GetSiblingIndex().ToString());
         Debug.Log("GetSiblingIndex2 : " + transform.GetChild(1).name);
         skillEffect = transform.GetChild(1);
+        boostEffect = transform.GetChild(3);
         audioSource.clip = audioClip;
         audioSource1.clip = audioClip1;
         soundcount = 0;
+        boostEffect.gameObject.SetActive(false);
 
-        
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            boostEffect.gameObject.SetActive(true);
+            ps.Play();
+            ps.loop = true;
+            ps2.Play();
+            ps2.loop = true;
+            pschild.Play();
+            pschild.loop = true;
+            ps2child.Play();
+            ps2child.loop = true;
+        }
+        if (!Input.GetKey(KeyCode.W))
+        {
+            ps.loop = false;
+            ps2.loop = false;
+            pschild.loop = false;
+            ps2child.loop = false;
+        }
         Turn();
         Thrust();
 
@@ -99,3 +125,4 @@ public class PlayerControll : MonoBehaviour
         myT.position += myT.forward * movementSpeed * Time.deltaTime * Input.GetAxis("Vertical");
     }
 }
+
