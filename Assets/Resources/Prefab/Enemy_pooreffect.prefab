@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114636773525843028}
   m_Layer: 0
   m_Name: Enemy_pooreffect
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 0
+  r: 0
 --- !u!198 &198184153398795478
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -82,7 +82,7 @@ public class SpawnBullet : MonoBehaviour {
         timer = GameObject.Find("Canvas").GetComponent<Timer>();
         GameObject.Find("Canvas").transform.FindChild("GameOverPanel").gameObject.SetActive(false);
         Enemy = GameObject.FindGameObjectWithTag("Enemy"); //Prefab을 받을 public 변수 입니다.
-        InvokeRepeating("SpawnEnemy", 2, 0.025f);
+        InvokeRepeating("SpawnEnemy", 2, 0.05f);
     }
 	
 	// Update is called once per frame

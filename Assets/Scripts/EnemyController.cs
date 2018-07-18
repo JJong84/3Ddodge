@@ -88,7 +88,7 @@ public class EnemyController : MonoBehaviour
 
         //InvokeRepeating("IsTriggerOnAndOff", DelayTime, RepeatingTime);
         //InvokeRepeating("IsTriggerOnAndOff", DelayTime, RepeatingTime+0.1f);
-        InvokeRepeating("TriggerCheck", DelayTime, 0.5f);
+        InvokeRepeating("TriggerCheck", DelayTime, 4f);
 
 
 
@@ -98,7 +98,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime*3);
         /*
         if (playerControll.skill)
         {         
